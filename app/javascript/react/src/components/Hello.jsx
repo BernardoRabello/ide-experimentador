@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
                                                         
 const Hello = (props) => {                                   
-  let [count, setCount] = useState(0)
+  
+  let [count, setCount] = useState(1)
   let [req, setReq] = useState("") 
+
   useEffect(() => {
     fetch("/hello/worldGet").then(async res=>{
       const parse = await res.text()
@@ -10,6 +12,7 @@ const Hello = (props) => {
       return parse
     }).then(res=>setReq(res))
   }, [])
+  
   return (
     <div>
       <h1>Counter prop:{props.name}: {count}</h1>
