@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+
 require 'simplecov'
 require 'simplecov_json_formatter'
 
@@ -16,7 +17,6 @@ SimpleCov.start do
   add_group 'Serializers', 'app/serializers'
   add_group 'Specs', 'spec'
 end
-
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

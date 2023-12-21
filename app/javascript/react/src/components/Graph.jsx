@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import styles from './Graph.module.css'
 
-function Graph(){                                   
+const Graph = () => {
+  const pathSegments = window.location.pathname.split('/');
+  const id = pathSegments[pathSegments.length - 1]; // pegar ID do log
+  
   let [req, setReq] = useState("")
   useEffect(() => {
-    fetch("/graph/skillsGet").then(async res=>{
+    fetch(`/graph/skillsGet/${id}`).then(async res=>{
       const parse = await res.text()
       return parse
     }).then(res=>setReq(res))
@@ -14,7 +16,7 @@ function Graph(){
 
   return (
     <div>
-      <Component req={req} className={styles.req}></Component>
+      <Component req={req}></Component>
     </div>
   )                   
 } 
@@ -93,9 +95,7 @@ const Component = ({ req }) => {
     }
   })
 
-
-  console.log(reqArray)
-  console.log(semRepLista)
+  
   return (
     <div>
       <LineChart
